@@ -1,0 +1,11 @@
+version: 2
+updates:
+  # Only GitHub Actions are updated automatically.
+  # Python packages (the "uv" ecosystem) are deliberately NOT listed.
+  - package-ecosystem: github-actions
+    directory: /
+    schedule:
+      interval: monthly
+    commit-message:
+      # Dependabot PR titles must pass the semantic PR title check.
+      prefix: ci
