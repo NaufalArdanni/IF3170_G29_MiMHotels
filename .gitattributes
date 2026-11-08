@@ -1,0 +1,15 @@
+# Normalize line endings: LF in the repo and in working copies, on every OS.
+* text=auto eol=lf
+
+# Binary files: never touch or diff as text.
+*.png binary
+*.jpg binary
+*.jpeg binary
+*.gif binary
+*.mp4 binary
+*.pdf binary
+*.pkl binary
+*.joblib binary
+
+# Lockfile: generated, keep out of language stats and noisy diffs.
+uv.lock text eol=lf linguist-generated

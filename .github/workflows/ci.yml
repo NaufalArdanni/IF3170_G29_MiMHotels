@@ -1,0 +1,78 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+# Least privilege: CI only needs to read the repository.
+permissions:
+  contents: read
+
+# A newer push to the same branch cancels the older run.
+concurrency:
+  group: ci-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+env:
+  UV_VERSION: "0.13.7"
+  PYTHONUTF8: "1"
+
+jobs:
+  checks:
+    name: checks (${{ matrix.os }})
+    runs-on: ${{ matrix.os }}
+    timeout-minutes: 20
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest, windows-latest]
+    steps:
+      - name: Check out the repository
+        uses: actions/checkout@v7
+        with:
+          persist-credentials: false
+
+      - name: Install uv (pinned to the version used locally)
+        run: pipx install "uv==$env:UV_VERSION"
+        shell: pwsh
+
+      - name: Verify the lockfile is up to date
+        run: uv lock --check
+
+      - name: Install dependencies exactly as locked
+        run: uv sync --locked
+
+      - name: Lint (Ruff)
+        run: uv run --no-sync ruff check --output-format=github
+
+      - name: Format check (Ruff)
+        run: uv run --no-sync ruff format --check
+
+      - name: Type check (mypy)
+        run: uv run --no-sync mypy
+
+      - name: Tests (pytest)
+        run: uv run --no-sync pytest --cov --cov-report=term-missing
+
+      - name: Run all pre-commit hooks
+        if: runner.os == 'Linux'
+        env:
+          # This hook only makes sense for local commits.
+          SKIP: no-commit-to-branch
+        run: uv run --no-sync pre-commit run --all-files --show-diff-on-failure
+
+  pr-title:
+    name: semantic PR title
+    if: github.event_name == 'pull_request'
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Install uv (pinned to the version used locally)
+        run: pipx install "uv==$UV_VERSION"
+
+      - name: Validate the PR title (it becomes the squash-merge commit message)
+        env:
+          # Passed through the environment so a hostile title cannot inject shell code.
+          PR_TITLE: ${{ github.event.pull_request.title }}
+        run: uvx --from commitizen==4.19.3 cz check --message "$PR_TITLE"
