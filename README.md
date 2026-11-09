@@ -1,4 +1,4 @@
-# Tugas Besar 2 (Supervised Learning) IF3170 Inteligensi Artifisial Semester 1 2026/2027 - Kelompok MiMHotels (29)
+# Tugas Besar 2 (*Supervised Learning*) IF3170 Inteligensi Artifisial Semester 1 2026/2027 - Kelompok MiMHotels (29)
 
 ## Deskripsi Singkat
 
@@ -29,7 +29,7 @@ output/                     hasil run algoritma
 data/                       dataset kompetisi (tidak di-commit)
 ```
 
-## Cara Setup dan Menjalankan Program
+## Cara *Setup* dan Menjalankan Program
 
 ### Prasyarat
 
@@ -42,7 +42,7 @@ Cara Menginstal uv:
 
 Tutup dan buka kembali terminal, lalu pastikan `uv --version` dapat dijalankan.
 
-### Setup
+### *Setup*
 
 1. *Clone* repositori dan masuk ke foldernya.
 
@@ -78,9 +78,11 @@ uv run pytest
 
 ## Pembagian Tugas
 
-| Nama | NIM | Akun GitHub | Tugas |
-| ---- | --- | ----------- | ----- |
-| Naufal Baldemar Ardanni | 13521154 | NaufalArdanni | TODO |
-| Theodore Marvel Suranton | 10623061 | TODO | TODO |
-| Muhammad Iqbal Raihan | 13524011 | TODO | TODO |
-| Jingglang Galih Rinenggan | 13524095 | TODO | TODO |
+Kelompok MiMHotels (29)
+
+| NIM      | Nama                         | Tugas |
+| -------- | ---------------------------- | ----- |
+| 13521154 | [Naufal Baldemar Ardanni](https://github.com/NaufalArdanni) | TODO |
+| 10623061 | [Theodore Marvel Suranton](https://github.com/TheoMarvel) | TODO |
+| 13521028 | [Muhammad Zulfiansyah Bayu Pratama](https://github.com/zulfiansyah404) | TODO |
+| 13524095 | [Jingglang Galih Rinenggan](https://github.com/Cikang44) | TODO |
