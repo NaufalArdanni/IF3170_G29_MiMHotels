@@ -30,5 +30,6 @@
     "python.testing.unittestEnabled": false,
     "python.testing.pytestArgs": [
         "tests"
-    ]
+    ],
+    "jupyter.notebookFileRoot": "${workspaceFolder}"
 }
