@@ -73,6 +73,8 @@ class Preprocessor:
         self.std_: FloatArray = np.ones(0)
         self.feature_names_: list[str] = []
         self.numeric_mask_: BoolArray = np.zeros(0, dtype=bool)
+        self.tree_feature_names_: list[str] = []
+        self.tree_categorical_mask_: BoolArray = np.zeros(0, dtype=bool)
 
     def fit(self, df: pd.DataFrame) -> Self:
         self.modes_ = {c: float(df[c].mode().iloc[0]) for c in MODE_FILLED}
@@ -98,6 +100,10 @@ class Preprocessor:
             *(f"{c}={v}" for c in CATEGORICAL for v in self.categories_[c]),
         ]
         self.numeric_mask_ = np.arange(len(self.feature_names_)) < len(NUMERIC)
+        self.tree_feature_names_ = [*NUMERIC, *BINARY, *CATEGORICAL]
+        self.tree_categorical_mask_ = np.arange(len(self.tree_feature_names_)) >= len(
+            NUMERIC
+        ) + len(BINARY)
         return self
 
     def transform(self, df: pd.DataFrame) -> FloatArray:
@@ -114,6 +120,14 @@ class Preprocessor:
 
     def fit_transform(self, df: pd.DataFrame) -> FloatArray:
         return self.fit(df).transform(df)
+
+    def transform_tree(self, df: pd.DataFrame) -> FloatArray:
+        columns = [_column(df, c) for c in (*NUMERIC, *BINARY)]
+        for name in CATEGORICAL:
+            known = {v: float(i) for i, v in enumerate(self.categories_[name][:-1])}
+            codes = df[name].map(known).to_numpy(dtype=np.float64)
+            columns.append(np.asarray(codes, dtype=np.float64))
+        return np.column_stack(columns)
 
     def _design(self, df: pd.DataFrame) -> FloatArray:
         angle = 2.0 * np.pi * _column(df, "arrival_month") / 12.0
