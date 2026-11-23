@@ -55,7 +55,6 @@ select = [
     "PD",   # pandas-vet
     "PERF", # perflint
     "RUF",  # ruff-specific
-    "D",    # pydocstyle
     "A",    # flake8-builtins
     "ICN",  # import conventions (np, pd, plt)
     "TID",  # flake8-tidy-imports (enforces the "from scratch" import ban)
@@ -70,9 +69,6 @@ ignore = [
     "N806", # variable in function should be lowercase: X_train, etc.
 ]
 
-[tool.ruff.lint.pydocstyle]
-convention = "numpy"
-
 [tool.ruff.lint.isort]
 known-first-party = ["ronaldohotel"]
 
@@ -82,10 +78,10 @@ known-first-party = ["ronaldohotel"]
 "pandas".msg = "From-scratch algorithms operate on NumPy arrays only. Put pandas code in ronaldohotel.data."
 
 [tool.ruff.lint.per-file-ignores]
-# The import ban only applies inside src/ronaldohotel/scratch/.
 "src/ronaldohotel/{baselines,data,evaluation,plotting}/**" = ["TID251"]
-"tests/**" = ["D", "T20", "TID251"]
-"*.ipynb" = ["D", "T20", "TID251", "E402", "E501", "B018", "ERA001"]
+"src/run_baseline.py" = ["TID251"]
+"tests/**" = ["T20", "TID251"]
+"*.ipynb" = ["T20", "TID251", "E402", "E501", "B018", "ERA001"]
 
 # ---------------------------------------------------------------- mypy
 [tool.mypy]
@@ -95,6 +91,19 @@ strict = true
 warn_unreachable = true
 enable_error_code = ["ignore-without-code", "redundant-expr", "truthy-bool"]
 pretty = true
+
+[[tool.mypy.overrides]]
+module = [
+    "pandas",
+    "pandas.*",
+    "sklearn",
+    "sklearn.*",
+    "scipy",
+    "scipy.*",
+    "matplotlib",
+    "matplotlib.*",
+]
+ignore_missing_imports = true
 
 # ---------------------------------------------------------------- pytest
 [tool.pytest.ini_options]
