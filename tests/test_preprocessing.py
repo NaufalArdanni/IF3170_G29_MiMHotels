@@ -80,3 +80,15 @@ def test_clean_training_data_drops_duplicates_but_keeps_other_rows() -> None:
     df = _frame(50, seed=3)
     duplicated = pd.concat([df, df.iloc[[0]].assign(id="copy")], ignore_index=True)
     assert len(clean_training_data(duplicated)) == len(df)
+
+
+def test_tree_matrix_keeps_gaps_and_encodes_categories() -> None:
+    prep = Preprocessor().fit(_frame(300, seed=0))
+    frame = _frame(80, seed=4)
+    frame.loc[0, "room_category"] = "Type Z"
+    x = prep.transform_tree(frame)
+    assert x.shape == (80, len(prep.tree_feature_names_))
+    assert np.isnan(x[:, 4]).any()
+    room = prep.tree_feature_names_.index("room_category")
+    assert np.isnan(x[0, room])
+    assert prep.tree_categorical_mask_[room]
