@@ -1,19 +1,19 @@
 algorithm,variant,implementation,macro_f1,threshold,accuracy,seconds,label_agreement
-KNN,k=31,scratch,0.808,0.46,0.8316,5.4,
+KNN,k=31,scratch,0.808,0.46,0.8316,5.0,
 KNN,k=31,scikit-learn,0.808,0.46,0.8316,0.9,1.0
-Decision Tree,CART (gini),scratch,0.8085,0.71,0.8382,0.9,
-Decision Tree,CART (gini),scikit-learn,0.8216,0.61,0.8396,0.1,0.888
-Logistic Regression,L1,scratch,0.7614,0.63,0.7917,2.8,
-Logistic Regression,L1,scikit-learn,0.7629,0.61,0.7902,16.2,0.9806
-Logistic Regression,L2,scratch,0.7611,0.62,0.7898,3.5,
-Logistic Regression,L2,scikit-learn,0.7635,0.63,0.7935,5.8,0.9861
-Logistic Regression,Elastic Net,scratch,0.7614,0.63,0.7917,3.9,
-Logistic Regression,Elastic Net,scikit-learn,0.7629,0.61,0.7902,6.8,0.9802
-SVM,Linear,scratch,0.7629,0.63,0.7953,12.4,
-SVM,Linear,scikit-learn,0.7626,0.63,0.7951,2.8,0.9998
-SVM,Polynomial,scratch,0.7817,0.56,0.8026,8.2,
-SVM,Polynomial,scikit-learn,0.7817,0.56,0.8026,3.0,1.0
-SVM,Gaussian,scratch,0.782,0.57,0.8047,4.1,
-SVM,Gaussian,scikit-learn,0.7818,0.57,0.8045,4.6,0.9998
+Decision Tree,CART (gini),scratch,0.8085,0.71,0.8382,1.1,
+Decision Tree,CART (gini),scikit-learn,0.8216,0.61,0.8396,0.2,0.888
+Logistic Regression,L1,scratch,0.7614,0.63,0.7917,3.9,
+Logistic Regression,L1,scikit-learn,0.7629,0.61,0.7902,20.0,0.9806
+Logistic Regression,L2,scratch,0.7611,0.62,0.7898,3.9,
+Logistic Regression,L2,scikit-learn,0.7635,0.63,0.7935,4.2,0.9861
+Logistic Regression,Elastic Net,scratch,0.7614,0.63,0.7917,3.5,
+Logistic Regression,Elastic Net,scikit-learn,0.7629,0.61,0.7902,6.3,0.9802
+SVM,Linear,scratch,0.7629,0.63,0.7953,12.2,
+SVM,Linear,scikit-learn,0.7626,0.63,0.7951,2.9,0.9998
+SVM,Polynomial,scratch,0.7817,0.56,0.8026,8.7,
+SVM,Polynomial,scikit-learn,0.7817,0.56,0.8026,2.4,1.0
+SVM,Gaussian,scratch,0.782,0.57,0.8047,4.2,
+SVM,Gaussian,scikit-learn,0.7818,0.57,0.8045,4.3,0.9998
 Naive Bayes,Gaussian + Bernoulli,scratch,0.6464,0.95,0.6498,0.0,
 Naive Bayes,Gaussian + Bernoulli,scikit-learn,0.6464,0.95,0.6498,0.0,1.0
