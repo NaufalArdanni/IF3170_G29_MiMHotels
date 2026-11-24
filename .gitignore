@@ -234,3 +234,6 @@ htmlcov/
 # OS junk
 .DS_Store
 Thumbs.db
+
+# Saved model files
+/output/models/
