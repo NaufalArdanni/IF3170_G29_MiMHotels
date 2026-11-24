@@ -82,7 +82,4 @@ Kelompok MiMHotels (29)
 
 | NIM      | Nama                         | Tugas |
 | -------- | ---------------------------- | ----- |
-| 13521154 | [Naufal Baldemar Ardanni](https://github.com/NaufalArdanni) | TODO |
-| 10623061 | [Theodore Marvel Suranton](https://github.com/TheoMarvel) | TODO |
-| 13521028 | [Muhammad Zulfiansyah Bayu Pratama](https://github.com/zulfiansyah404) | TODO |
-| 13524095 | [Jingglang Galih Rinenggan](https://github.com/Cikang44) | TODO |
+| 13521154 | [Naufal Baldemar Ardanni](https://github.com/NaufalArdanni) | Seluruh bagian |
